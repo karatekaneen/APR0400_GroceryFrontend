@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,6 +27,31 @@ namespace GroceryFrontend
         public MainPage()
         {
             this.InitializeComponent();
+            GetProducts();
+        }
+
+        public async void GetProducts()
+        {
+            try
+            {
+                string URL = @"http://localhost:50261/api/products";
+                HttpClient httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync(new Uri(URL));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var products = JsonConvert.DeserializeObject<List<Product>>(content);
+
+                    //Databind the list
+                    lstProducts.ItemsSource = products;
+                }
+            }
+            catch (Exception ex)
+            {
+                //ToDo Give errormessage to user and possibly log error
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }
