@@ -99,6 +99,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Models\TransactionComponent.cs" />

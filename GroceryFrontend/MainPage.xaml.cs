@@ -27,31 +27,8 @@ namespace GroceryFrontend
         public MainPage()
         {
             this.InitializeComponent();
-            GetProducts();
+            DataContext = App.AppProductViewModel;
         }
 
-        public async void GetProducts()
-        {
-            try
-            {
-                string URL = @"http://localhost:50261/api/products";
-                HttpClient httpClient = new HttpClient();
-                HttpResponseMessage response = await httpClient.GetAsync(new Uri(URL));
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var products = JsonConvert.DeserializeObject<List<Product>>(content);
-
-                    //Databind the list
-                    lstProducts.ItemsSource = products;
-                }
-            }
-            catch (Exception ex)
-            {
-                //ToDo Give errormessage to user and possibly log error
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
-            }
-        }
     }
 }

@@ -6,8 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0">
+            <TextBlock x:Name="Header" Text="{Binding AppTitle}"  Style="{StaticResource BaseTextBlockStyle}" Margin="15,15,0,15" VerticalAlignment="Center" />
+        </StackPanel>
+        <TextBlock Text="{Binding PageTitle}" Margin="12,0,0,0" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" />
+        <Grid x:Name="ContentPanel" Grid.Row="3" Margin="12">
+            <ListBox x:Name="lstProducts" ItemsSource="{Binding Products}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                            <!--<Image Source="{Binding ImagePath}" Height="50" Width="50" Stretch="UniformToFill"/> -->
+                            <StackPanel Margin="12,0,0,0">
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}"/>
+                                <TextBlock Text="{Binding Category}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                <TextBlock Text="{Binding Price}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid> 
+    <!-- <Grid>
         <ListBox x:Name="lstProducts" Width="Auto" Margin="0,12,0,0" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -30,5 +57,5 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-    </Grid>
+    </Grid> -->
 </Page>

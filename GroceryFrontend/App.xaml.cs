@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GroceryFrontend.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace GroceryFrontend
     /// </summary>
     sealed partial class App : Application
     {
+        public static ProductViewModel AppProductViewModel { get; set; } = new ProductViewModel();
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,7 +32,9 @@ namespace GroceryFrontend
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-        }
+            App.AppProductViewModel.LoadData();
+
+    }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
