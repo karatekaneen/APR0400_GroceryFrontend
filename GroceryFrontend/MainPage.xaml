@@ -6,56 +6,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0">
-            <TextBlock x:Name="Header" Text="{Binding AppTitle}"  Style="{StaticResource BaseTextBlockStyle}" Margin="15,15,0,15" VerticalAlignment="Center" />
-        </StackPanel>
-        <TextBlock Text="{Binding PageTitle}" Margin="12,0,0,0" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" />
-        <Grid x:Name="ContentPanel" Grid.Row="3" Margin="12">
-            <ListBox x:Name="lstProducts" ItemsSource="{Binding Products}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
-                            <!--<Image Source="{Binding ImagePath}" Height="50" Width="50" Stretch="UniformToFill"/> -->
-                            <StackPanel Margin="12,0,0,0">
-                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}"/>
-                                <TextBlock Text="{Binding Category}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                                <TextBlock Text="{Binding Price}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource SubtitleTextBlockStyle}"/>
+        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Produkter" Margin="12,0,0,0" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" />
+            <Grid x:Name="ContentPanel" Grid.Row="3" Margin="12" Grid.Column="1">
+                <ListBox x:Name="lstProducts">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,0" BorderThickness="3">
+                                <!--<Image Source="{Binding ImagePath}" Height="50" Width="50" Stretch="UniformToFill"/> -->
+                                <StackPanel Margin="12,0,0,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Name:" Margin="0, 0,10,0" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Style="{StaticResource TitleTextBlockStyle}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Category:" Margin="0, 0,10,0" TextWrapping="Wrap" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding Category}" TextWrapping="Wrap" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Price:" Margin="0, 0,10,0" TextWrapping="Wrap" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                        <TextBlock Text="$" TextWrapping="Wrap" Style="{StaticResource SubtitleTextBlockStyle}" />
+                                        <TextBlock Text="{Binding Price}" TextWrapping="Wrap" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid x:Name="DetailPanel" Grid.Row="3" Grid.Column="0"/>
+            <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Center">
+                <Button x:Name="btnCreateProduct" Content="Create Product" Width="200" Height="125" VerticalAlignment="Bottom"  Margin="12" Click="btnCreateProduct_Click"/>
+                <Button x:Name="btnEditProduct" Content="Edit Product"  Width="200" Height="125" VerticalAlignment="Bottom" Margin="12" Click="btnEditProduct_Click" />
+                <Button x:Name="btnDeleteProduct" Content="Remove Product"  Width="200" Height="125" VerticalAlignment="Bottom" Margin="12" Click="btnDeleteProduct_Click"/>
+
+            </StackPanel>
         </Grid>
     </Grid> 
-    <!-- <Grid>
-        <ListBox x:Name="lstProducts" Width="Auto" Margin="0,12,0,0" VerticalAlignment="Top">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,17">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding Name}" TextWrapping="Wrap"  Margin="12,0,12,6"  Style="{ThemeResource SubheaderTextBlockStyle }" Grid.Column="0" />
-                        <TextBlock Grid.Row="1" Text="{Binding Price}" TextWrapping="NoWrap" Margin="6,12,0,0" Style="{ThemeResource CaptionTextBlockStyle }" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"  Grid.Column="0"/>
-                        <TextBlock Grid.Row="2" Text="{Binding Category}" TextWrapping="NoWrap" Margin="6,12,0,0" Style="{ThemeResource CaptionTextBlockStyle }" Foreground="{ThemeResource SystemControlForegroundAccentBrush}"  Grid.Column="0"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid> -->
 </Page>

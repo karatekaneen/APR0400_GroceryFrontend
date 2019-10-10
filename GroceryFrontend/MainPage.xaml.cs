@@ -27,8 +27,38 @@ namespace GroceryFrontend
         public MainPage()
         {
             this.InitializeComponent();
-            DataContext = App.AppProductViewModel;
+            LoadProducts();
         }
 
+        private async void LoadProducts()
+        {
+            lstProducts.ItemsSource = await Product.GetProducts();
+        }
+
+        private void btnCreateProduct_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Create");
+            Product p = (Product)lstProducts.SelectedItem;
+            System.Diagnostics.Debug.WriteLine(p.Name);
+        }
+
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Delete");
+            if (lstProducts.SelectedIndex != -1)
+            {
+                Product p = (Product)lstProducts.SelectedItem;
+
+                Frame.Navigate(typeof(DeletePage), p);
+            }
+            else return;
+
+        }
+
+        private void btnEditProduct_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Edit");
+
+        }
     }
 }
