@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GroceryFrontend.Views;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,7 +58,14 @@ namespace GroceryFrontend
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Edit");
+            System.Diagnostics.Debug.WriteLine("Delete");
+            if (lstProducts.SelectedIndex != -1)
+            {
+                Product p = (Product)lstProducts.SelectedItem;
+
+                Frame.Navigate(typeof(EditPage), p);
+            }
+            else return;
 
         }
     }
