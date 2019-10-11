@@ -31,6 +31,13 @@ namespace GroceryFrontend
             LoadProducts();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            LoadProducts();
+        }
+
         private async void LoadProducts()
         {
             lstProducts.ItemsSource = await Product.GetProducts();
@@ -38,17 +45,15 @@ namespace GroceryFrontend
 
         private void btnCreateProduct_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Create");
-            Product p = (Product)lstProducts.SelectedItem;
-            System.Diagnostics.Debug.WriteLine(p.Name);
+            Frame.Navigate(typeof(CreatePage));
         }
 
         private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Delete");
             if (lstProducts.SelectedIndex != -1)
             {
                 Product p = (Product)lstProducts.SelectedItem;
+                lstProducts.SelectedIndex = -1;
 
                 Frame.Navigate(typeof(DeletePage), p);
             }
@@ -58,10 +63,10 @@ namespace GroceryFrontend
 
         private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Delete");
             if (lstProducts.SelectedIndex != -1)
             {
                 Product p = (Product)lstProducts.SelectedItem;
+                lstProducts.SelectedIndex = -1;
 
                 Frame.Navigate(typeof(EditPage), p);
             }

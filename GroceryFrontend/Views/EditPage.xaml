@@ -8,6 +8,42 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel x:Name="HeaderPanel" Orientation="Horizontal" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}" Grid.Row="0"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Produkter" Margin="12,0,0,0" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" />
+            <Grid x:Name="ContentPanel" Grid.Row="3" Margin="12" Grid.Column="1">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
 
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                        <TextBlock Text="Name:" Margin="0, 0,10,0"  TextAlignment="End"  Width="125"  Style="{StaticResource TitleTextBlockStyle}"/>
+                        <TextBox x:Name="txtName" Text="{Binding Name}" TextWrapping="Wrap" MinWidth="150" MaxWidth="400"/>
+
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                        <TextBlock Text="Category:" Margin="0, 0,10,0" TextWrapping="Wrap" TextAlignment="End" Width="125" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBox x:Name="txtCategory" Text="{Binding Category}" TextWrapping="Wrap" MinWidth="150" MaxWidth="400"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                        <TextBlock Text="Price:" Margin="0, 0,10,0" TextWrapping="Wrap" TextAlignment="End"  Width="125" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                        <TextBox x:Name="txtPrice" Text="{Binding Price}" TextWrapping="Wrap" BeforeTextChanging="TextBox_OnBeforeTextChanging" MinWidth="150" MaxWidth="400"/>
+                    </StackPanel>
+                    <Button x:Name="btnSaveProduct" Content="Save Product"  Width="300" Height="75" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="12" Click="btnSaveProduct_Click" />
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="DetailPanel" Grid.Row="3" Grid.Column="0"/>
+            <StackPanel Orientation="Vertical" Grid.Row="3" VerticalAlignment="Center">
+                <Button x:Name="btnBack" Content="Back to Products" Width="200" Height="125" VerticalAlignment="Bottom"  Margin="12" Click="btnBack_Click" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
